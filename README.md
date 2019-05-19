@@ -146,9 +146,9 @@ et un peu de style dans le fichier **todo-item.component.css**
   text-decoration: line-through;
 }
 ```
-### 3\_ Gréation des Events (événements)
+### 9\_ Gréation des Events (événements)
 
-dans le template **Todos.component.html** :
+dans le template **todo.item.component.html** :
 ```
 <div [ngClass] = "setClasses()">
 <p>
@@ -176,3 +176,6 @@ setClasses(){
     console.log('delete');
   }
 ```
+### 9\_ Changer la valeur dans le serveur en utilisant JSONplaceholder
+
+Remplacer les donnéees en dur créer précedement dans le fichier **Todos.component.html** par un service
