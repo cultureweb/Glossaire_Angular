@@ -22,5 +22,14 @@ ng serve
 Allez sur http://localhost:4200/ et enjoy ! Maintenant, nous devons configurer la gestion du rendu côté serveur.
 
 
+### Generer des components
 
-
+On crée un répertoire components et notre premier component Todos :
+```
+ng generate component components/Todos
+```
+Ensuite pour créer rapidement d'autres components :
+```
+ng  g c components/TodoItem
+```
+Cela crée automatiquement un repertoire todo-item avec tout : le TS, le HTML, CSS
