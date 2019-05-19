@@ -21,15 +21,67 @@ ng serve
 ```
 Allez sur http://localhost:4200/ et enjoy ! Maintenant, nous devons configurer la gestion du rendu côté serveur.
 
-
-### Generer des components
+### 2\_ Créer un premier component 
 
 On crée un répertoire components et notre premier component Todos :
 ```
 ng generate component components/Todos
 ```
+
+### 3\_ Gréation des Classes
+
+On crée un répertoire models et notre premiere Class Todo dans ce répertoire :
+```
+export class Todo {
+    id:number;
+    title:string;
+    completed:boolean;
+}
+```
+### 4\_ Importer notre Class
+
+Importer notre class Todo dans notre component todos.ts puis y mettre quelques données en dur.
+```
+import { Todo } from '../../models/Todo';
+
+export class TodosComponent implements OnInit {
+  todos: Todo[];
+
+  constructor() { }
+
+  ngOnInit() {
+    this.todos = [
+      {
+        id: 1,
+        title: 'Todo One',
+        completed: false
+      },
+      {
+        id: 2,
+        title: 'Todo Two',
+        completed: true
+      },
+      {
+        id: 3,
+        title: 'Todo Three',
+        completed: false
+      }
+    ]
+  }
+
+}
+```
+### 5\_Générer des components
 Ensuite pour créer rapidement d'autres components :
 ```
 ng  g c components/TodoItem
 ```
 Cela crée automatiquement un repertoire todo-item avec tout : le TS, le HTML, CSS
+
+### 6\_Lier les components
+
+Dans le fichier **Todos.component.html**, il est temps de lier notre nouveau component todo-item à todos :
+```
+<app-todo-item *ngFor="let todo of todos" [todo]="todo"> </app-todo-item>
+
+```
