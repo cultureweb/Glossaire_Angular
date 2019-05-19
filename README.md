@@ -96,18 +96,17 @@ Remplacer maintenant le contenu dans le fichier todo.item.component.html soit **
 ### 8\_ Lier du style et des classes dynamyques
 
 Utilser le raccouci emmet **input:checkbox** puis tab pour creer la checkbox rapidement
-Encapsulez le tout dans une seule div avec l'ajout de **ngClass** directive :
-
+Encapsulez le tout dans une seule div avec l'ajout de **ngClass** directive dans le fichier **todo.item.component.html**
 ```
 <div [ngClass]="setClasses()" >
 <p>
   <input type="checkbox" />
   {{ todo.title }}
-  <button>x</button>
+  <button class="delete">x</button>
 </p>
 </div>
 ```
-dans le fichier **Todos.component.html**
+dans le fichier **todo-item.component.ts**
 ```
 export class TodoItemComponent implements OnInit {
 @Input() todo: Todo;
@@ -125,9 +124,9 @@ setClasses(){
   }
 }
 ```
-et un peu de style dans le fichier **Todos.component.css**
+et un peu de style dans le fichier **todo-item.component.css**
 ```
-.del {
+.delete {
   background: #ff0000;
   color: #fff;
   border: none;
@@ -146,4 +145,34 @@ et un peu de style dans le fichier **Todos.component.css**
 .is-complete {
   text-decoration: line-through;
 }
+```
+### 3\_ Gréation des Events (événements)
+
+dans le template **Todos.component.html** :
+```
+<div [ngClass] = "setClasses()">
+<p>
+  <input (change)="onToggle(todo)" type="checkbox" />
+  {{ todo.title }}
+  <button (click)="onDelete(todo)" class="delete">x</button>
+</p>
+</div>
+```
+Et dans la typeScript file **todo.item.component.ts** juste en dessous de setClasses():
+```
+// Set dynamic Classes
+setClasses(){
+  let classes = {
+    todo:true,
+    'is-complete': this.todo.completed
+  }
+  return classes;
+  }
+  //Methods
+  onToggle(todo) {
+    todo.completed = !todo.completed ;
+  }
+  onDelete(todo) {
+    console.log('delete');
+  }
 ```
