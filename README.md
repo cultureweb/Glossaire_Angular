@@ -89,5 +89,61 @@ Dans le fichier **Todos.component.html**, il est temps de lier notre nouveau com
 
 Remplacer maintenant le contenu dans le fichier todo.item.component.html soit **todo-item works!** créé précedement à la construction du component par :
 ```
-{{ todo.title }}
+<p>
+    {{ todo.title }}
+</p>
+```
+### 8\_ Lier du style et des classes dynamyques
+
+Utilser le raccouci emmet **input:checkbox** puis tab pour creer la checkbox rapidement
+Encapsulez le tout dans une seule div avec l'ajout de **ngClass** directive :
+
+```
+<div [ngClass]="setClasses()" >
+<p>
+  <input type="checkbox" />
+  {{ todo.title }}
+  <button>x</button>
+</p>
+</div>
+```
+dans le fichier **Todos.component.html**
+```
+export class TodoItemComponent implements OnInit {
+@Input() todo: Todo;
+  constructor() { }
+
+  ngOnInit() {
+  }
+// Set dynamic Classes
+setClasses(){
+  let classes = {
+    todo:true,
+    'is-complete': this.todo.completed
+  }
+  return classes;
+  }
+}
+```
+et un peu de style dans le fichier **Todos.component.css**
+```
+.del {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 9px;
+  border-radius: 50%;
+  cursor: pointer;
+  float: right;
+}
+
+.todo {
+  background: #f4f4f4;
+  padding: 10px;
+  border-bottom: 1px #ccc dotted;
+}
+
+.is-complete {
+  text-decoration: line-through;
+}
 ```
