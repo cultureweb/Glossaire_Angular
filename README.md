@@ -83,5 +83,11 @@ Cela crée automatiquement un repertoire todo-item avec tout : le TS, le HTML, C
 Dans le fichier **Todos.component.html**, il est temps de lier notre nouveau component todo-item à todos :
 ```
 <app-todo-item *ngFor="let todo of todos" [todo]="todo"> </app-todo-item>
+```
 
+### 7/_Contenu dynamique
+
+Remplacer maintenant le contenu dans le fichier todo.item.component.html soit **todo-item works!** créé précedement à la construction du component par :
+```
+{{ todo.title }}
 ```
